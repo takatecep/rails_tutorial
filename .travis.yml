@@ -1,14 +1,12 @@
 language: ruby
-
-rvm: 
- - 2.3.1
-
+rvm:
+- 2.3.1
 bundler_args: "--without development --deployment"
-
 cache: bundler
-
 before_script:
-  - bin/rails db:migrate RAILS_ENV=test
-
+- bin/rails db:migrate RAILS_ENV=test
 script:
-  - bin/rails test
+- bin/rails test
+notifications:
+  slack:
+    secure: xIJ0KJL8qGSXDedDG9sY8JmKHlww74sRQM31nXFgqK/MeaxHd38+o02lXOaqNnyNfNeMOPiuDs+ZvRSQ3w1qs1NLh0A7BodPVUBWiTMcwyTfPrKYDhVV1FChkQkS0Onu2mXx6WbGR2Jj1aTfSAWDhu8LWb6B2zgvVEoArJmz25jDgbIeRNQoji4f3zDbSqBnk1WZG0Ag2h9x27MtsDRRkt6lTbxGk8Uf4VBwu6B/tPEGUv+WNCIQ4sntBhus7Z7/wdpw7ytgijzhkTTS76GuCJet+ZTkR4Hr14/GyXtVW2RuLkMjtN13vne1LP0Q1mUlZi0Yhn42PMd+ZMJiWdpWBUfAIyTodhv2q64xByTbMkmvbYtXWdbDhFqRDxdKPCxfjg13uEPzcuFB79QAOw7jHXrWW23xjRWG8Dz0WjGox5VhIlYJgEYQE2xB3SEi75CbqSCW77ySmrVc9vzD0ki8ugRutewQHNGGvxCCNoes2GWxs0Daux1R54ZQIEqYMdZ0tRx9fiiZb6JiDJ6r6LrYSHKyWL1xw6BnIRUJYGqhh3I9KUxNOwIEPDhmfVNI87gfDSloGmI9LpEt8iTCk5WdDHjH7TKIgbi0gDrmmTp9Q5AZwzTeXWZNb3KIuhXq1wYhpjhef2D3KkIs4Ib+BZTSAWAbh5ZgHJzVGTZ7T6W3AZg=

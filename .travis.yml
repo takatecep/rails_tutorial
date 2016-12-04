@@ -17,3 +17,5 @@ deploy:
   app: takatecep-rails-tutorial
   on:
     repo: takatecep/rails_tutorial
+  run:
+    - "rails db:migrate"

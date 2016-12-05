@@ -3,6 +3,8 @@ AllCops:
   Include:
     - '**/*.rake'
   Exclude:
+    - 'bin/*'
+    - 'config/**/*'
     - 'db/migrate/**/*'
     - 'db/schema.rb'
     - 'vendor/**/*'
@@ -38,9 +40,9 @@ Metrics/AbcSize:
   Max: 30
 
 # 1行あたりの長さ。デフォルトは80桁。
-# 80桁を越える場合は、100桁以内を目安に改行を入れること。
+# 80桁を越える場合は、120桁以内を目安に改行を入れること。
 Metrics/LineLength:
-  Max: 100
+  Max: 120
   AllowURI: true
     - http
     - https
@@ -52,8 +54,17 @@ Metrics/MethodLength:
   CountComments: false
   Max: 20
 
+# Immutable String マジックコメントをチェックしない。
+# http://blog.toshimaru.net/ruby-immutable-string/
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 # 非ASCIIのコメントを許容する。
 Style/AsciiComments:
+  Enabled: false
+
+# ::を使ってのメソッドを呼び出しを許容する。
+Style/ColonMethodCall:
   Enabled: false
 
 # クラスや、名前空間の区切りのためのものではないモジュールについて、

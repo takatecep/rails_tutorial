@@ -1,0 +1,66 @@
+# rubocopの動作全体に関わる設定
+AllCops:
+  Include:
+    - '**/*.rake'
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+
+# -R/--rails オプションでRailsアプリ用のコーディング規約設定を
+# チェックできるので、常時オンにする
+Rails:
+  Enabled: true
+
+# ----------------------------------------------------------------------------
+# 以下個別のコーディング規約設定
+#
+# 個別の設定はrubocopのdefault.ymlを参照のこと。
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+#
+# 設定項目はアルファベット順に並べている
+# ----------------------------------------------------------------------------
+
+# 例外を握りつぶさないこと。
+# https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions
+Lint/HandleExceptions:
+  Enabled: true
+  Exclude:
+    - 'bin/*' # 'rescue LoadError'など、ここでは別にかまわない
+
+# A(ssignment), B(ranch) and C(ondition)のメトリクス。
+# http://c2.com/cgi/wiki?AbcMetric
+# rubocopのデフォルトは15。
+# http://c2.com/cgi/wiki?AbcMetric
+Metrics/AbcSize:
+  Max: 30
+
+# 1行あたりの長さ。デフォルトは80桁。
+# 80桁を越える場合は、100桁以内を目安に改行を入れること。
+Metrics/LineLength:
+  Max: 100
+  AllowURI: true
+    - http
+    - https
+
+# メソッドの最大行数を制限する。
+# rubocopのデフォルトは10行(コメント行は除く)。
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml#L530
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
+
+# 非ASCIIのコメントを許容する。
+Style/AsciiComments:
+  Enabled: false
+
+# クラスや、名前空間の区切りのためのものではないモジュールについて、
+# コメントは書かなくても構わない。
+Style/Documentation:
+  Enabled: false
+
+# 正規表現での、Perl由来の数値を使った後方参照($1,$2...)は許容する。
+Style/PerlBackrefs:
+  Enabled: false

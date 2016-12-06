@@ -34,5 +34,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'users/show'
     assert_not flash[:success].empty?
+    assert logged_in?
   end
 end
